@@ -81,6 +81,7 @@ const Modal: React.FC<ModalProps> = ({
              outline-none
              focus:outline-none
              bg-neutral-800/70
+             
           '
           >
               <div
@@ -91,6 +92,7 @@ const Modal: React.FC<ModalProps> = ({
                     lg:w-3/6
                     xl:w-2/5
                     my-6
+                    lg:mt-20
                     mx-auto
                     lg:h-auto
                     md:h-auto
