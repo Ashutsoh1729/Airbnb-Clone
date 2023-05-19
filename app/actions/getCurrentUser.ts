@@ -26,7 +26,13 @@ export default async function getCurrentUser() {
             return null
         }
 
-        return currentUser;
+        // Due to some user-type error issue we have to change the types of date-time data into string
+        return {
+            ...currentUser,
+            createdAt: currentUser.createdAt.toISOString(),
+            updatedAt: currentUser.updatedAt.toISOString(),
+            emailVerified: currentUser.emailVerified?.toISOString()|| null,
+        };
 
     } catch (error: any) {
         // console.log(error );

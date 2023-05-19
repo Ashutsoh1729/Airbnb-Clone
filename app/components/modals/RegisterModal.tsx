@@ -17,11 +17,14 @@ import Heading from '../Heading';
 import Input from '../input/Input';
 import { toast } from 'react-hot-toast';
 import Button from '../Button';
+import { signIn } from 'next-auth/react';
+import useLoginModal from '@/app/hooks/useLoginModal';
 
 
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
 
     // We have established our form control with this function
@@ -62,6 +65,13 @@ const RegisterModal = () => {
         } catch (error){
                 console.log(error);
             }
+    }
+
+
+    const onToggle = () => {
+        setIsLoading(false);
+        loginModal.onOpen();
+        registerModal.onClose();
     }
 
 
@@ -113,13 +123,13 @@ const RegisterModal = () => {
                 outline
                 label='Continue with Google'
                 icon={FcGoogle}
-                onClick={()=>{}}
+                onClick={()=>signIn("google")}
             />
             <Button
                 outline
                 label='Continue with GitHub'
                 icon={AiFillGithub}
-                onClick={()=>{}}
+                onClick={()=>signIn('github')}
             />
             <div
               className='
@@ -133,7 +143,7 @@ const RegisterModal = () => {
                     <div>
                         Already have an Account? 
                     </div>
-                    <div onClick={registerModal.onClose} className='text-neutral-800 cursor-pointer hover:underline text-center'>
+                    <div onClick={onToggle} className='text-neutral-800 cursor-pointer hover:underline text-center'>
                         Login
                     </div>
                 </div>
