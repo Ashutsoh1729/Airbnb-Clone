@@ -7,7 +7,7 @@ import styles from './page.module.css'
 export default function Home() {
   return (
     <div className=' text-2xl text-rose-500'>
-      Hello Airbnb!
+      {/* Hello Airbnb! */}
     </div>
   )
 }
