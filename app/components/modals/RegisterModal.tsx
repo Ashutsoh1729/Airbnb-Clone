@@ -1,4 +1,5 @@
 'use client'
+// I have noticed Some problem in the Register Modal part, It is sending and creating the uses but not signin them up at the same time, 
 
 import React, { useState } from 'react';
 import axios from 'axios';
@@ -53,6 +54,7 @@ const RegisterModal = () => {
         axios.post("/api/register", data)
             .then(() => {
                 registerModal.onClose();
+                
             })
             .catch((err) => {
                 console.log(err);
@@ -64,7 +66,9 @@ const RegisterModal = () => {
                 ;
         } catch (error){
                 console.log(error);
-            }
+        }
+        
+        signIn();
     }
 
 

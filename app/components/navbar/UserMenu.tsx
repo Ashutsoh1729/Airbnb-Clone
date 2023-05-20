@@ -8,6 +8,7 @@ import useRegisterModal from '@/app/hooks/useRegisterModal'
 import useLoginModal from '@/app/hooks/useLoginModal'
 import { signOut } from 'next-auth/react'
 import { SafeUser } from '@/app/types'
+import useRentModal from '@/app/hooks/useRentModal'
 
 
 interface UserMenuProps{
@@ -21,6 +22,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const rentModal = useRentModal();
 
   // Lets add some state to the components
   const [isOpen, setIsOpen] = useState(false);
@@ -28,13 +30,25 @@ const UserMenu: React.FC<UserMenuProps> = ({
   // Another function which will be a callback function
   const toggleOpen = useCallback(() => {
     setIsOpen(!isOpen);
-  },[isOpen])
+  }, [isOpen])
+  
+
+  // Adding functionalities for giving rent 
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+
+    // Open the rent modal
+    rentModal.onOpen();
+  },[currentUser,loginModal])
 
 
   return (
       <div className=' relative'>
           <div className='flex flex-row items-center gap-3 pr-3'>
               <div
+                  onClick={onRent}
                   className=' 
                     hidden
                     md:block
@@ -47,7 +61,6 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     transition
                     cursor-pointer
                     '
-                  onClick={() => { }}
               >
                   {currentUser? `Welcome ${currentUser.name}`:"Airbnb Your Home"}
               </div>
@@ -115,7 +128,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                 label='My Properties'
               />
                <MenuItem
-                onClick={() => { }}
+                onClick={rentModal.onOpen}
                 label='Airbnb My Home'
                 />
                 <hr /> 
