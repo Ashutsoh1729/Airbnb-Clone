@@ -9,6 +9,7 @@ import { FieldValues, useForm } from 'react-hook-form'
 import CountrySelect from '../input/CountrySelect'
 import dynamic from 'next/dynamic'
 import Counter from '../input/Counter'
+import ImageUpload from '../input/ImageUpload'
 // import Map from '../Map'
 
 
@@ -59,6 +60,7 @@ const RentModal = () => {
     const guestCount = watch("guestCount");
     const roomCount = watch("roomCount");
     const bathroomCount = watch("bathroomCount");
+    const imageSrc = watch("imageSrc");
 
     const Map = useMemo(() => dynamic(() => import("../Map"), {
         ssr: false
@@ -190,6 +192,20 @@ const RentModal = () => {
                     value={bathroomCount}
                     onChange={(value) => setCustomValue('bathroomCount',value)}
                 />
+           </div>
+        )
+    }
+
+    if (step == STEPS.IMAGES) {
+        bodyContent = (
+            <div className='flex flex-col gap-8'>
+                <Heading
+                    title='Add a photo of your place'
+                    subtitle='Show guests what your place look like!'
+                /> 
+
+                {/* Here we are going to create a component to upload image */}
+                <ImageUpload onChange={(value) => setCustomValue("imageSrc",value) } value={imageSrc}/>
            </div>
         )
     }
