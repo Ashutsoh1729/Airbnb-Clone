@@ -1,7 +1,7 @@
 'use client'
 
 import useLoginModal from '@/app/hooks/useLoginModal';
-import { SafeListing, SafeUser } from '@/app/types'
+import { SafeListing, SafeReservations, SafeUser } from '@/app/types'
 import { useRouter } from 'next/navigation';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
@@ -9,7 +9,7 @@ import  { categories } from '@/app/components/navbar/Categories';
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listings/ListingHead';
 import ListingInfo from '@/app/components/listings/ListingInfo';
-import { Reservation } from '@prisma/client';
+
 import { differenceInCalendarDays, eachDayOfInterval } from 'date-fns';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
@@ -21,7 +21,7 @@ interface ListingClientProps {
         user: SafeUser;
     },
     currentUser: SafeUser | null,
-    reservations?: Reservation[],
+    reservations?: SafeReservations[] ,
 }
 
 
@@ -44,7 +44,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     const disableDates = useMemo(() => {
         let dates: Date[] = [];
 
-        reservations.forEach((reservation) => {
+        reservations?.forEach((reservation) => {
             const range = eachDayOfInterval({
                 start: new Date(reservation.startDate),
                 end: new Date(reservation.endDate)
@@ -87,8 +87,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
         }).then(() => {
 
             toast.success("Reservation Successfull.");
-            // Redirect to the trips page
             router.refresh();
+            // Redirect to the trips page
         }).catch((err) => {
             throw new Error(err);
         }).finally(() => {

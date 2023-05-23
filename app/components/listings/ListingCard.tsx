@@ -103,7 +103,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </div>
           {!reservation && (
             <div className=' font-light'>
-               /night
+               / night
             </div>
           )}
         </div>
