@@ -1,4 +1,4 @@
-import { User } from "@prisma/client";
+import { Listing, User } from "@prisma/client";
 
 //  Here I have forgoten to add the emailVerified to null so it shows error
 export type SafeUser = Omit<
@@ -10,3 +10,9 @@ export type SafeUser = Omit<
     emailVerified: string | null,
 }
     
+export type SafeListing = Omit<
+    Listing,
+    "createdAt"
+> & {
+    createdAt: string;
+}

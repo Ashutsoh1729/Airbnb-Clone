@@ -37,7 +37,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
         maxFiles: 1
       }}
     >
-      {({ open }) => {
+      {({ open }: any) => {
         return (
           <div
             onClick={() =>open?.()}
