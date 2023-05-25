@@ -2,7 +2,7 @@ import prisma from "../libs/prismadb"
 
 interface IParams {
     userId?: string,
-    listingId?: string,
+    listingId?: string ,
     authorId?:string,
 }
 
@@ -16,7 +16,7 @@ export default async function getReservations(
 
         const query: any = {};
 
-        if (listingId) {
+        if (listingId !== undefined || listingId !== null) {
             query.listingId = listingId;
         }
         if (userId) {
@@ -27,7 +27,7 @@ export default async function getReservations(
         }
 
 
-        const reservations = await prisma.reservation.findMany({
+        const reservations = await prisma.reservation?.findMany({
             where: query,
             include: {
                 listing: true
@@ -42,9 +42,9 @@ export default async function getReservations(
             createdAt: reservation.createdAt.toISOString(),
             startDate: reservation.startDate.toISOString(),
             endDate: reservation.endDate.toISOString(),
-            listig: {
+            listing: {
                 ...reservation.listing,
-                createdAt: reservation.listing.createdAt.toISOString(),
+                createdAt: reservation.listing?.createdAt.toISOString(),
             }
         }))
 
