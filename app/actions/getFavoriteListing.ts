@@ -18,6 +18,9 @@ export default async function getFavoriteListings() {
         }
     })
 
+    // console.log(favorites);
+    
+
     const safeFavorites = favorites.map((favorite) => (
         {
             ...favorites,

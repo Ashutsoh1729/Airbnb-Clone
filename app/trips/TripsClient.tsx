@@ -23,6 +23,9 @@ const TripsClient: React.FC<TripsClientProps> = ({
     const router = useRouter();
     const [deletingId, setDeletingId] = useState('');
 
+    console.log(reservations);
+    
+
     const onCancel = useCallback((id: string) => {
         setDeletingId(id);
 
@@ -33,6 +36,8 @@ const TripsClient: React.FC<TripsClientProps> = ({
             })
             .catch((error) => {
                 toast.error(error?.response?.data?.error)
+                console.log(error);
+                
             })
             .finally(() => {
                 setDeletingId('');
@@ -58,8 +63,8 @@ const TripsClient: React.FC<TripsClientProps> = ({
           gap-8
         "
             >
-                {reservations.map((reservation: any) => (
-                    <ListingCard
+                {reservations.map((reservation: any) => 
+                 {   return (<ListingCard
                         key={reservation.id}
                         data={reservation.listing}
                         reservation={reservation}
@@ -68,8 +73,8 @@ const TripsClient: React.FC<TripsClientProps> = ({
                         disabled={deletingId === reservation.id}
                         actionLabel="Cancel reservation"
                         currentUser={currentUser}
-                    />
-                ))}
+                    />)
+                })}
             </div>
         </Container>
     );

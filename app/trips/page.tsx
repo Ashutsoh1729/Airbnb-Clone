@@ -39,6 +39,17 @@ const TripsPage = async () => {
     const reservations = await getReservations({ userId: currentUserId });
 
     
+    
+    reservations.map((reservation: any) => {
+        // console.log(reservation)
+        let id = reservation.id;
+        let listing = reservation.listing;
+        console.log(id);
+        console.log(listing.id);
+        
+        });
+    
+    
 
 
 

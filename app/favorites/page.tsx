@@ -12,6 +12,8 @@ const FavoritesPage = async () => {
     const favoriteListings = await getFavoriteListings();
     const currentUser = await getCurrentUser();
 
+  
+
     if (favoriteListings.length === 0) {
         return (
             <ClientOnly>
@@ -26,13 +28,17 @@ const FavoritesPage = async () => {
 
 
   return (
-      <ClientOnly>
-          <FavoritesClient
-              currentUser={currentUser}
-              listings = {favoriteListings}
-          />
-
-        </ClientOnly>
+    //   <ClientOnly>
+    //       <EmptyState
+    //           title="Under Development"
+    //           subtitle="Due to some error it is now in the development"
+    //       />
+    //     </ClientOnly>
+      
+      <FavoritesClient
+          currentUser={currentUser}
+          listings={favoriteListings}
+      />
   )
 }
 

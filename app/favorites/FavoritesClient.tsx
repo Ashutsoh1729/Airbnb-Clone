@@ -22,6 +22,20 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
     currentUser
 }) => {
 
+   
+
+    
+    listings.map((listing: any) => {
+        // console.log(listing);
+        for (let index in listing) {
+            if (index !== "createdAt") {
+                console.log(listing[index].title);
+            }
+        }
+    })
+    
+    
+
     return (
         <Container>
             <Heading
@@ -41,13 +55,25 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
           gap-8
         "
             >
-                {listings.map((listing: any) => (
-                    <ListingCard
-                        currentUser={currentUser}
-                        key={listing.id}
-                        data={listing}
-                    />
-                ))}
+                
+                {
+                    listings.map((listing: any) => {
+                        for (let key in listing) {
+                            if (key !== "createdAt") {
+                                return (
+                                    <ListingCard
+                                        currentUser={currentUser}
+                                        key={listing[key].id}
+                                        data={listing[key]}
+                                    />
+                                )
+                            }
+                        }
+                    })
+                }
+
+                
+
             </div>
         </Container>
     );

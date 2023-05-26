@@ -16,7 +16,7 @@ export default async function getReservations(
 
         const query: any = {};
 
-        if (listingId !== undefined || listingId !== null) {
+        if (listingId) {
             query.listingId = listingId;
         }
         if (userId) {
