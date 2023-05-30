@@ -37,18 +37,19 @@ export default async function getReservations(
             }
         })
 
-        const safeReservations = reservations.map((reservation) => ({
-            ...reservation,
-            createdAt: reservation.createdAt.toISOString(),
-            startDate: reservation.startDate.toISOString(),
-            endDate: reservation.endDate.toISOString(),
-            listing: {
-                ...reservation.listing,
-                createdAt: reservation.listing?.createdAt.toISOString(),
-            }
-        }))
+        const safeReservations = reservations.map(
+            (reservation) => ({
+                ...reservation,
+                createdAt: reservation.createdAt.toISOString(),
+                startDate: reservation.startDate.toISOString(),
+                endDate: reservation.endDate.toISOString(),
+                listing: {
+                    ...reservation.listing,
+                    createdAt: reservation?.listing?.createdAt.toISOString()
+                },
+            }));
 
-        return safeReservations
+        return safeReservations;
         
     } catch (error:any) {
         throw new Error(error)

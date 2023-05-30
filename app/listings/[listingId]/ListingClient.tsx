@@ -5,7 +5,7 @@ import { SafeListing, SafeReservations, SafeUser } from '@/app/types'
 import { useRouter } from 'next/navigation';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import  { categories } from '@/app/components/navbar/Categories';
+import { categories } from '@/app/components/navbar/Categories';
 import Container from '@/app/components/Container';
 import ListingHead from '@/app/components/listings/ListingHead';
 import ListingInfo from '@/app/components/listings/ListingInfo';
@@ -21,11 +21,11 @@ interface ListingClientProps {
         user: SafeUser;
     },
     currentUser: SafeUser | null,
-    reservations?: SafeReservations[] ,
+    reservations?: SafeReservations[],
 }
 
 
-const initialDateRange =  {
+const initialDateRange = {
     key: "selection",
     startDate: new Date(),
     endDate: new Date()
@@ -54,7 +54,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
         })
 
         return dates
-    },[reservations,])
+    }, [reservations,])
 
 
     const category = useMemo(() => {
@@ -62,9 +62,9 @@ const ListingClient: React.FC<ListingClientProps> = ({
     }, [listing.category])
 
 
-    
-    
-    
+
+
+
 
 
     const [isLoading, setIsLoading] = useState(false);
@@ -109,7 +109,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
 
 
     useEffect(() => {
-   
+
 
         if (dateRange.startDate && dateRange.endDate) {
             const dayCount = differenceInCalendarDays(
@@ -124,8 +124,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
             }
 
         };
-    }, [dateRange,listing.price]);
-    
+    }, [dateRange, listing.price]);
+
 
 
     return (
@@ -155,9 +155,9 @@ const ListingClient: React.FC<ListingClientProps> = ({
                         totalPrice={totalPrice}
                         dateRange={dateRange}
                         disabled={isLoading}
-                        onChangeDate = {(value)=> setDateRange(value)}
+                        onChangeDate={(value) => setDateRange(value)}
                         onSubmit={onCreateReservation}
-                        disableDates = {disableDates}
+                        disableDates={disableDates}
                     />
                 </div>
 

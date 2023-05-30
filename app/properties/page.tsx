@@ -17,8 +17,13 @@ const PropertiesPage = async () => {
         />
     }
 
-    // const listings = await getListings({ userId: currentUser.id });
-    const listings = await getListings();
+    const listings = await getListings({ userId: currentUser.id });
+
+    // listings.map((listing: any) => {
+    //     console.log(listing);
+        
+    // })
+
 
     if (listings.length === 0) {
         return (

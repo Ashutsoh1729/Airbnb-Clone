@@ -52,7 +52,7 @@ const RegisterModal = () => {
 
             signIn("credentials", {
                 ...data,
-                redirect:false
+                redirect: false
             }).then((callback) => {
                 setIsLoading(false);
 
@@ -65,7 +65,7 @@ const RegisterModal = () => {
                     toast.error(callback.error);
                 }
             })
-           
+
         } catch (error) {
             console.log(error);
         }

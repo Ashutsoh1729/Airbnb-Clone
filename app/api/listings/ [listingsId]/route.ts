@@ -4,13 +4,13 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 
 
 interface IParams {
-    reservationId?: string,
+    listingId?: string,
 }
 
 
 export async function DELETE(
     request: Request,
-    {params}: { params: IParams}
+    { params }: { params: IParams }
 ) {
     const currentUser = await getCurrentUser();
 
@@ -19,13 +19,13 @@ export async function DELETE(
         return NextResponse.error();
     }
 
-    const { reservationId } = params;
-    
-    
-    if (!reservationId || typeof reservationId !== `string`) {
-        console.log(reservationId);
-        console.log(typeof reservationId);
-        
+    let { listingId } = params;
+
+    if (typeof listingId !== `string`) {
+        listingId = `${listingId}`
+    }
+
+    if (!listingId || typeof listingId !== `string`) {
         throw new Error("Invalid Id");
     }
 
@@ -33,8 +33,11 @@ export async function DELETE(
 
     const reservation = await prisma.reservation.deleteMany({
         where: {
-            id: reservationId,
-            userId: currentUser.id 
+            id: listingId,
+            OR: [
+                { userId: currentUser.id },
+                { listing: { userId: currentUser.id } }
+            ]
         }
     });
 

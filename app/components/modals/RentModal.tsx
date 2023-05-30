@@ -78,7 +78,7 @@ const RentModal = () => {
         setValue(id, value, {
             shouldValidate: true,
             shouldDirty: true,
-            shouldTouch:true
+            shouldTouch: true
         })
     }
 
@@ -105,13 +105,13 @@ const RentModal = () => {
                 router.refresh();
                 reset();
                 setStep(STEPS.CATAGORY);
-                rentModal.onClose(); 
+                rentModal.onClose();
             }).catch((errors) => {
                 toast.error("Some error has taken place, location: RentModal.tsx, onSubmit function")
             }).finally(() => {
                 setIsLoading(false);
             })
-        
+
 
 
     }
@@ -121,22 +121,22 @@ const RentModal = () => {
 
     const actionLabel = useMemo(() => {
         if (step === STEPS.PRICE) {
-            return  'Create '
+            return 'Create '
         }
         return "Next"
     }, [step])
-    
+
     const secondaryActionLabel = useMemo(() => {
         if (step === STEPS.CATAGORY) {
             return undefined
         }
         return 'Back '
-    },[step])
+    }, [step])
 
     // Now create our body content
     // Here we want our body content to be dynamic depending on the steps we are on
     // So insted of cosnt body content we will use let as body content
-    
+
     let bodyContent = (
         <div className='flex flex-col gap-8'>
             <Heading
@@ -158,10 +158,10 @@ const RentModal = () => {
                     <div key={item.label} className='grid-cols-1'>
                         {/* Listen the video again and add the comment why we add this component here */}
                         <CategoryInput
-                            onClick={(category) => setCustomValue("category",category)}
+                            onClick={(category) => setCustomValue("category", category)}
                             selected={category == item.label}
                             label={item.label}
-                            icon = {item.icon }
+                            icon={item.icon}
                         />
                         {item.label}
                     </div>
@@ -182,12 +182,12 @@ const RentModal = () => {
                 {/* Here we create a input section for the location purpose */}
                 <CountrySelect
                     value={location}
-                onChange={(value)=> setCustomValue("location",value)}
+                    onChange={(value) => setCustomValue("location", value)}
                 />
                 {/* Now what are we missing here is our map, Lets add our map here */}
                 {/* Now we are going to import our map in a different way as it is not supported in react */}
                 <Map
-                center={location?.latlng}
+                    center={location?.latlng}
                 />
             </div>
         )
@@ -206,23 +206,23 @@ const RentModal = () => {
                     title="Guests"
                     subtitle="How many guests do you allow?"
                     value={guestCount}
-                    onChange={(value)=> setCustomValue('guestCount',value)}
+                    onChange={(value) => setCustomValue('guestCount', value)}
                 />
                 <hr />
                 <Counter
                     title="Rooms"
                     subtitle="How many rooms do you have?"
                     value={roomCount}
-                    onChange={(value) => setCustomValue('roomCount',value)}
+                    onChange={(value) => setCustomValue('roomCount', value)}
                 />
                 <hr />
                 <Counter
                     title="Bathrooms"
                     subtitle="How many bathrooms do you have?"
                     value={bathroomCount}
-                    onChange={(value) => setCustomValue('bathroomCount',value)}
+                    onChange={(value) => setCustomValue('bathroomCount', value)}
                 />
-           </div>
+            </div>
         )
     }
 
@@ -232,11 +232,11 @@ const RentModal = () => {
                 <Heading
                     title='Add a photo of your place'
                     subtitle='Show guests what your place look like!'
-                /> 
+                />
 
                 {/* Here we are going to create a component to upload image */}
-                <ImageUpload onChange={(value) => setCustomValue("imageSrc",value) } value={imageSrc}/>
-           </div>
+                <ImageUpload onChange={(value) => setCustomValue("imageSrc", value)} value={imageSrc} />
+            </div>
         )
     }
     if (step == STEPS.DESCRIPTION) {
@@ -245,7 +245,7 @@ const RentModal = () => {
                 <Heading
                     title='How would you describe your place?'
                     subtitle='Short and sweet works best!'
-                /> 
+                />
 
                 <Input
                     id='title'
@@ -266,8 +266,8 @@ const RentModal = () => {
                     required
                 />
 
-               
-           </div>
+
+            </div>
         )
     }
     if (step == STEPS.PRICE) {
@@ -276,7 +276,7 @@ const RentModal = () => {
                 <Heading
                     title='Now set your Price'
                     subtitle='How much do you charge per night'
-                /> 
+                />
                 <Input
                     id='price'
                     label='Price'
@@ -287,8 +287,8 @@ const RentModal = () => {
                     errors={errors}
                     required
                 />
-               
-           </div>
+
+            </div>
         )
     }
 
@@ -297,19 +297,19 @@ const RentModal = () => {
 
 
 
-  return (
-      <Modal
-          isOpen = {rentModal.isOpen}
-          title='Airbnb your home'
-          actionLabel={actionLabel}
-          secondaryActionLabel={secondaryActionLabel}
-          secondaryAction={step==STEPS.CATAGORY ? undefined : onBack}
-          onClose={rentModal.onClose}
-          onSubmit={handleSubmit(onSubmit )}
-          body={bodyContent}
+    return (
+        <Modal
+            isOpen={rentModal.isOpen}
+            title='Airbnb your home'
+            actionLabel={actionLabel}
+            secondaryActionLabel={secondaryActionLabel}
+            secondaryAction={step == STEPS.CATAGORY ? undefined : onBack}
+            onClose={rentModal.onClose}
+            onSubmit={handleSubmit(onSubmit)}
+            body={bodyContent}
         //   footer={footerContent}
-      />
-  )
+        />
+    )
 }
 
 export default RentModal

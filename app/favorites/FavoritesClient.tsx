@@ -2,12 +2,13 @@
 
 
 
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { SafeListing, SafeUser } from '../types'
 import Container from '../components/Container';
 import ListingCard from '../components/listings/ListingCard';
 import Heading from '../components/Heading';
+import { log } from 'console';
 
 
 
@@ -22,19 +23,27 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
     currentUser
 }) => {
 
-   
 
-    
-    listings.map((listing: any) => {
-        // console.log(listing);
+    let newListingArray: any[] = [];
+
+    newListingArray = useMemo(() => {
+        let newArray: any[] = [];
+        let [listing]: any = listings;
+        
         for (let index in listing) {
             if (index !== "createdAt") {
-                console.log(listing[index].title);
+                newArray.push(listing[index])
             }
         }
-    })
-    
-    
+        return newArray
+
+
+
+    }, [listings])
+
+
+    console.log(newListingArray.length);
+
 
     return (
         <Container>
@@ -55,24 +64,18 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
           gap-8
         "
             >
-                
+
                 {
-                    listings.map((listing: any) => {
-                        for (let key in listing) {
-                            if (key !== "createdAt") {
-                                return (
-                                    <ListingCard
-                                        currentUser={currentUser}
-                                        key={listing[key].id}
-                                        data={listing[key]}
-                                    />
-                                )
-                            }
-                        }
+                    newListingArray.map((listing: any) => {
+                        return (<ListingCard
+                            currentUser={currentUser}
+                            key={listing.id}
+                            data={listing}
+                        />)
                     })
                 }
 
-                
+
 
             </div>
         </Container>

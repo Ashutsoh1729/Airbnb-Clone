@@ -24,6 +24,11 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
     const [deletingId, setDeletingId] = useState('');
 
     const onDelete = useCallback((id: string) => {
+        
+        if (typeof id !== 'string') {
+            id = `${id}`
+        }
+        
         setDeletingId(id);
 
         axios.delete(`/api/listings/${id}`)
@@ -33,6 +38,8 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
             })
             .catch((error) => {
                 toast.error(error?.response?.data?.error)
+                console.log(error?.response?.data);
+                
             })
             .finally(() => {
                 setDeletingId('');
@@ -59,17 +66,23 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
           gap-8
         "
             >
-                {listings.map((listing: any) => (
-                    <ListingCard
-                        key={listing.id}
-                        data={listing}
-                        actionId={listing.id}
-                        onAction={onDelete}
-                        disabled={deletingId === listing.id}
-                        actionLabel="Delete property"
-                        currentUser={currentUser}
-                    />
-                ))}
+                {listings.map((listing: any) => 
+                {
+                    if (listing.userID == currentUser?.id) {
+                        console.log(`This is ${currentUser}`);
+                        
+                        return <ListingCard
+                            key={listing.id}
+                            data={listing}
+                            actionId={listing.id}
+                            onAction={onDelete}
+                            disabled={deletingId == listing.id}
+                            actionLabel="Delete property"
+                            currentUser={currentUser}
+                        />
+                    }
+                   }
+                )}
             </div>
         </Container>
     );

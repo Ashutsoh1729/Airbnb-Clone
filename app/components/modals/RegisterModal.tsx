@@ -4,7 +4,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { AiFillGithub } from 'react-icons/ai';
-import {FcGoogle} from 'react-icons/fc'
+import { FcGoogle } from 'react-icons/fc'
 import {
     FieldValues,
     SubmitHandler,
@@ -48,26 +48,27 @@ const RegisterModal = () => {
 
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        try{setIsLoading(true);
+        try {
+            setIsLoading(true);
 
-        // Here we are going to initiate a axios post call to the register endpoint  
-        axios.post("/api/register", data)
-            .then(() => {
-                registerModal.onClose();
-                
-            })
-            .catch((err) => {
-                console.log(err);
-                toast.error("Something wrong in Resister Modal.")
-            })
-            .finally(() => {
-                setIsLoading(false);
-            })
+            // Here we are going to initiate a axios post call to the register endpoint  
+            axios.post("/api/register", data)
+                .then(() => {
+                    registerModal.onClose();
+
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toast.error("Something wrong in Resister Modal.")
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                })
                 ;
-        } catch (error){
-                console.log(error);
+        } catch (error) {
+            console.log(error);
         }
-        
+
         signIn();
     }
 
@@ -93,8 +94,8 @@ const RegisterModal = () => {
                 register={register}
                 errors={errors}
                 required
-                // type={''}
-                
+            // type={''}
+
             />
             <Input
                 id='name'
@@ -103,8 +104,8 @@ const RegisterModal = () => {
                 register={register}
                 errors={errors}
                 required
-                // type={''}
-                
+            // type={''}
+
             />
             <Input
                 id='password'
@@ -114,7 +115,7 @@ const RegisterModal = () => {
                 errors={errors}
                 required
                 type='password'
-                
+
             />
         </div>
     )
@@ -127,16 +128,16 @@ const RegisterModal = () => {
                 outline
                 label='Continue with Google'
                 icon={FcGoogle}
-                onClick={()=>signIn("google")}
+                onClick={() => signIn("google")}
             />
             <Button
                 outline
                 label='Continue with GitHub'
                 icon={AiFillGithub}
-                onClick={()=>signIn('github')}
+                onClick={() => signIn('github')}
             />
             <div
-              className='
+                className='
                 text-neutral-500
                 text-center
                 mt-4
@@ -145,7 +146,7 @@ const RegisterModal = () => {
             >
                 <div className='flex flex-row gap-2 items-center justify-center '>
                     <div>
-                        Already have an Account? 
+                        Already have an Account?
                     </div>
                     <div onClick={onToggle} className='text-neutral-800 cursor-pointer hover:underline text-center'>
                         Login
@@ -157,18 +158,18 @@ const RegisterModal = () => {
 
 
 
-  return (
-      <Modal
-          disabled={isLoading}
-          isOpen={registerModal.isOpen}
-          title='Register'
-          actionLabel='Continue'
-          onClose={registerModal.onClose}
-          onSubmit={ handleSubmit(onSubmit)}
-          body={bodyContent}
-          footer={footerContent}
-      />
-  )
+    return (
+        <Modal
+            disabled={isLoading}
+            isOpen={registerModal.isOpen}
+            title='Register'
+            actionLabel='Continue'
+            onClose={registerModal.onClose}
+            onSubmit={handleSubmit(onSubmit)}
+            body={bodyContent}
+            footer={footerContent}
+        />
+    )
 }
 
 export default RegisterModal

@@ -12,7 +12,7 @@ import useRentModal from '@/app/hooks/useRentModal'
 import { useRouter } from 'next/navigation'
 
 
-interface UserMenuProps{
+interface UserMenuProps {
   currentUser?: SafeUser | null;
 }
 
@@ -33,7 +33,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
   const toggleOpen = useCallback(() => {
     setIsOpen(!isOpen);
   }, [isOpen])
-  
+
 
   // Adding functionalities for giving rent 
   const onRent = useCallback(() => {
@@ -43,15 +43,15 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
     // Open the rent modal
     rentModal.onOpen();
-  },[currentUser,loginModal])
+  }, [currentUser, loginModal])
 
 
   return (
-      <div className=' relative'>
-          <div className='flex flex-row items-center gap-3 pr-3'>
-              <div
-                  onClick={onRent}
-                  className=' 
+    <div className=' relative'>
+      <div className='flex flex-row items-center gap-3 pr-3'>
+        <div
+          onClick={onRent}
+          className=' 
                     hidden
                     md:block
                     text-sm
@@ -63,12 +63,12 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     transition
                     cursor-pointer
                     '
-              >
-                  {currentUser? `Welcome ${currentUser.name}`:"Airbnb Your Home"}
-              </div>
-              <div
-                  onClick={toggleOpen}
-                  className='
+        >
+          {currentUser ? `Welcome ${currentUser.name}` : "Airbnb Your Home"}
+        </div>
+        <div
+          onClick={toggleOpen}
+          className='
                     p-4
                     flex
                     flex-row
@@ -83,13 +83,13 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     md:py-1
                     border-neutral-200
                   '
-              >
+        >
           <AiOutlineMenu />
           <div className='hidden md:block'>
-            <Avatar src={currentUser?.image } />
+            <Avatar src={currentUser?.image} />
           </div>
-                  
-              </div>
+
+        </div>
       </div>
       {isOpen && (
         <div
@@ -109,44 +109,44 @@ const UserMenu: React.FC<UserMenuProps> = ({
           <div className=' flex flex-col cursor-pointer'>
             {currentUser ? (
               <>
-               <MenuItem
-                onClick={() => router.push("/trips")}
-                label='My Trips'
-              />
-               <MenuItem
-                  onClick={() => router.push("/favorites")}
-                label='My Favorites'
-              />
-               <MenuItem
-                onClick={() => router.push("/reservations")}
-                label='My Reservations'
-              />
-               <MenuItem
-                onClick={() => { }}
-                label='My Properties'
-              />
-               <MenuItem
-                onClick={rentModal.onOpen}
-                label='Airbnb My Home'
+                <MenuItem
+                  onClick={() => router.push("/trips")}
+                  label='My Trips'
                 />
-                <hr /> 
-               <MenuItem
-                onClick={() => signOut()}
-                label='Logout'
-              />
-            </>
+                <MenuItem
+                  onClick={() => router.push("/favorites")}
+                  label='My Favorites'
+                />
+                <MenuItem
+                  onClick={() => router.push("/reservations")}
+                  label='My Reservations'
+                />
+                <MenuItem
+                  onClick={() => router.push("/properties")}
+                  label='My Properties'
+                />
+                <MenuItem
+                  onClick={rentModal.onOpen}
+                  label='Airbnb My Home'
+                />
+                <hr />
+                <MenuItem
+                  onClick={() => signOut()}
+                  label='Logout'
+                />
+              </>
 
             ) : (
               <>
-              <MenuItem
-                onClick={loginModal.onOpen}
-                label='Login'
-              />
-               <MenuItem
-                onClick={registerModal.onOpen}
-                label='SignUp'
-              />
-            </>)}
+                <MenuItem
+                  onClick={loginModal.onOpen}
+                  label='Login'
+                />
+                <MenuItem
+                  onClick={registerModal.onOpen}
+                  label='SignUp'
+                />
+              </>)}
 
           </div>
 

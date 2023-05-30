@@ -12,7 +12,8 @@ const FavoritesPage = async () => {
     const favoriteListings = await getFavoriteListings();
     const currentUser = await getCurrentUser();
 
-  
+    // console.log(favoriteListings);
+    
 
     if (favoriteListings.length === 0) {
         return (

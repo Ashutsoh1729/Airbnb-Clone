@@ -78,21 +78,21 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
                 </div>
             </div>
 
-          
-            <hr className='my-4'/>
+
+            <hr className='my-4' />
 
             {category && (
                 <ListingCategory
                     icon={category.icon}
                     label={category?.label}
                     description={category?.description}
-                    />
+                />
             )}
             <hr className='my-4' />
-            
+
             <div className='text-lg font-light text-neutral-500'>
                 {description}
-                </div>
+            </div>
 
             <hr className='my-4' />
             <Map center={coordinates} />

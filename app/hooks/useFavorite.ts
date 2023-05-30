@@ -14,10 +14,10 @@ interface IUseFavorite {
 
 
 
-const useFavorite =({
-    listingId,currentUser
+const useFavorite = ({
+    listingId, currentUser
 }: IUseFavorite) => {
-    
+
     const router = useRouter();
     const loginModal = useLoginModal();
 
@@ -25,7 +25,7 @@ const useFavorite =({
         const list = currentUser?.favoriteIds || [];
 
         return list.includes(listingId);
-    },[currentUser,listingId])
+    }, [currentUser, listingId])
 
     const toggleFavorite = useCallback(async (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
@@ -39,7 +39,7 @@ const useFavorite =({
             if (hasFavorited) {
                 request = () => axios.delete(`/api/favorites/${listingId}`)
             } else {
-                request = () => axios.post(`/api/favorites/${listingId}` )
+                request = () => axios.post(`/api/favorites/${listingId}`)
             }
 
             await request();
@@ -49,11 +49,11 @@ const useFavorite =({
         } catch (error) {
             toast.error("Something went wrong, location: useFavorite.ts /hook")
         }
-    },[currentUser,hasFavorited,listingId,loginModal,router])
+    }, [currentUser, hasFavorited, listingId, loginModal, router])
 
 
-    return {hasFavorited,toggleFavorite}
- 
+    return { hasFavorited, toggleFavorite }
+
 }
 
 
