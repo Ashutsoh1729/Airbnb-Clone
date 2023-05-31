@@ -19,13 +19,10 @@ export async function DELETE(
         return NextResponse.error();
     }
 
-    const { reservationId } = params;
+    const { reservationsId }:any =  params;
     
     
-    if (!reservationId || typeof reservationId !== `string`) {
-        console.log(reservationId);
-        console.log(typeof reservationId);
-        
+    if (!reservationsId || typeof reservationsId !== `string`) {
         throw new Error("Invalid Id");
     }
 
@@ -33,7 +30,7 @@ export async function DELETE(
 
     const reservation = await prisma.reservation.deleteMany({
         where: {
-            id: reservationId,
+            id: reservationsId,
             userId: currentUser.id 
         }
     });

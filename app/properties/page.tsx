@@ -19,11 +19,16 @@ const PropertiesPage = async () => {
 
     const listings = await getListings({ userId: currentUser.id });
 
-    // listings.map((listing: any) => {
-    //     console.log(listing);
-        
-    // })
+    
+        // listings.map((listing: any) => {
+        //     // if (listing.userID == currentUser?.id) {
+        //     //     console.log(`This is ${currentUser.name}'s property.`);
+        //     // }
 
+        //     console.log(listing.userId==currentUser?.id)
+        // }
+        // )
+    
 
     if (listings.length === 0) {
         return (

@@ -23,6 +23,19 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
     const router = useRouter();
     const [deletingId, setDeletingId] = useState('');
 
+
+    listings.map((listing: any) => {
+        // if (listing.userID == currentUser?.id) {
+        //     console.log(`This is ${currentUser.name}'s property.`);
+        // }
+
+        console.log(listing.userId == currentUser?.id)
+    }
+    )
+
+
+    
+
     const onDelete = useCallback((id: string) => {
         
         if (typeof id !== 'string') {
@@ -68,7 +81,7 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
             >
                 {listings.map((listing: any) => 
                 {
-                    if (listing.userID == currentUser?.id) {
+                    if (listing.userId == currentUser?.id) {
                         console.log(`This is ${currentUser}`);
                         
                         return <ListingCard
@@ -89,3 +102,9 @@ const PropertiesClient: React.FC<PropertiesClientProps> = ({
 }
 
 export default PropertiesClient;
+
+
+
+
+
+
