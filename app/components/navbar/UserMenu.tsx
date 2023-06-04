@@ -35,13 +35,16 @@ const UserMenu: React.FC<UserMenuProps> = ({
   }, [isOpen])
 
   const modalRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         isOpen &&
         modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
+        !modalRef.current.contains(event.target as Node) &&
+        !event.composedPath().includes(menuButtonRef?.current)
       ) {
         setIsOpen(false);
       }
@@ -129,10 +132,11 @@ const UserMenu: React.FC<UserMenuProps> = ({
           text-sm
         '
         >
-          <div className=' flex flex-col cursor-pointer'>
+          <div className=' flex flex-col cursor-pointer' ref = {menuButtonRef}>
             {currentUser ? (
               <>
                 <MenuItem
+                  r
                   onClick={() => router.push("/trips")}
                   label='My Trips'
                 />

@@ -1,5 +1,6 @@
 'use client'
 import useSearchModal from '@/app/hooks/useSearchModal'
+import { useSearchParams } from 'next/navigation'
 import React from 'react'
 import {BiSearch} from 'react-icons/bi'
 
@@ -7,6 +8,8 @@ const Search = () => {
 
     const searchModal = useSearchModal();
     // console.log(searchModal.isOpen);
+    const params = useSearchParams();
+    // const { getByValue } = 
     
 
   return (
