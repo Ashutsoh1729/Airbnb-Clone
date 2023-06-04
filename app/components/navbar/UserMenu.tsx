@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
 import Avatar from '../Avatar'
 import MenuItem from './MenuItem'
@@ -33,6 +33,28 @@ const UserMenu: React.FC<UserMenuProps> = ({
   const toggleOpen = useCallback(() => {
     setIsOpen(!isOpen);
   }, [isOpen])
+
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isOpen &&
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
+
+
 
 
   // Adding functionalities for giving rent 
@@ -67,6 +89,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
           {currentUser ? `Welcome ${currentUser.name}` : "Airbnb Your Home"}
         </div>
         <div
+          ref={modalRef}
           onClick={toggleOpen}
           className='
                     p-4
