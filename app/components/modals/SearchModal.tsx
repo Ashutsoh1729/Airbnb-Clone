@@ -103,7 +103,6 @@ const SearchModal = () => {
         router
     ])
 
-    console.log(searchModal.isOpen);
     const actionLabel = useMemo(() => {
         if (step === STEPS.INFO) {
             return 'Search'

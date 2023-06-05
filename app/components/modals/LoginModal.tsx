@@ -135,7 +135,7 @@ const RegisterModal = () => {
             >
                 <div className='flex flex-row gap-2 items-center justify-center '>
                     <div>
-                        Don't have an account
+                      {  `Don't have an account`}
                     </div>
                     <div onClick={onToggle} className='text-neutral-800 cursor-pointer hover:underline text-center'>
                         SignUp

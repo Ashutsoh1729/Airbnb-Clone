@@ -40,14 +40,13 @@ const TripsPage = async () => {
 
     
     
-    reservations.map((reservation: any) => {
-        // console.log(reservation)
-        let id = reservation.id;
-        let listing = reservation.listing;
-        console.log(id);
-        console.log(listing.id);
+    // reservations.map((reservation: any) => {
+
+    //     let id = reservation.id;
+    //     let listing = reservation.listing;
+   
         
-        });
+    //     });
     
     
 
