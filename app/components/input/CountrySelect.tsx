@@ -13,7 +13,7 @@ export type CountrySelectValue = {
     label: string,
     value: string,
     region: string,
-    latlng: []
+    latlng: number[]
 }
 
 interface CountrySelectProps {
