@@ -4,11 +4,14 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from '../../../libs/prismadb'
 
 
-interface IParms{
+interface IParams{
     listingId?:string,
 }
 
-export async function POST( { params }: {params : IParms}) {
+export async function POST(
+    request: Request,
+    { params }: { params: IParams }
+) {
     const currentUser = await getCurrentUser();
     
     if (!currentUser) {
@@ -39,7 +42,7 @@ export async function POST( { params }: {params : IParms}) {
 
 // Here we can create a delete function 
 
-export async function DELETE(res: Response, { params }: { params: IParms }) {
+export async function DELETE(request: Request, { params }: { params: IParams }) {
     
     const currentUser = await getCurrentUser();
     
