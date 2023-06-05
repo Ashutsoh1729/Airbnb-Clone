@@ -1,11 +1,12 @@
 
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ClientOnly from '../components/ClientOnly'
 import getFavoriteListings from '../actions/getFavoriteListing'
 import getCurrentUser from '../actions/getCurrentUser';
 import EmptyState from '../components/EmptyState';
 import FavoritesClient from './FavoritesClient';
+
 
 const FavoritesPage = async () => {
 
@@ -13,7 +14,7 @@ const FavoritesPage = async () => {
     const currentUser = await getCurrentUser();
 
     // console.log(favoriteListings);
-    
+
 
     if (favoriteListings.length === 0) {
         return (

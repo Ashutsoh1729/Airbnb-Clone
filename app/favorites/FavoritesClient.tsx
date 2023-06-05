@@ -4,7 +4,7 @@
 
 import React, { useMemo } from 'react'
 
-import { SafeListing, SafeUser } from '../types'
+import { SafeFavoriteListing, SafeListing, SafeUser } from '../types'
 import Container from '../components/Container';
 import ListingCard from '../components/listings/ListingCard';
 import Heading from '../components/Heading';
@@ -14,7 +14,7 @@ import { log } from 'console';
 
 interface FavoritesClientProps {
     currentUser?: SafeUser | null;
-    listings: SafeListing[];
+    listings: SafeListing[] ;
 }
 
 
