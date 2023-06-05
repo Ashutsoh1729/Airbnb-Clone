@@ -8,7 +8,7 @@ interface IParms{
     listingId?:string,
 }
 
-export async function POST(response: Response , { params }: {params : IParms}) {
+export async function POST( { params }: {params : IParms}) {
     const currentUser = await getCurrentUser();
     
     if (!currentUser) {
