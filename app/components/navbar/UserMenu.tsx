@@ -43,8 +43,8 @@ const UserMenu: React.FC<UserMenuProps> = ({
       if (
         isOpen &&
         modalRef.current &&
-        !modalRef.current.contains(event.target as Node) &&
-        !event.composedPath().includes(menuButtonRef?.current)
+        !modalRef.current.contains(event.target as Node) && menuButtonRef?.current &&
+        !event.composedPath().includes(menuButtonRef?.current as EventTarget)
       ) {
         setIsOpen(false);
       }
@@ -136,7 +136,6 @@ const UserMenu: React.FC<UserMenuProps> = ({
             {currentUser ? (
               <>
                 <MenuItem
-                  r
                   onClick={() => router.push("/trips")}
                   label='My Trips'
                 />
