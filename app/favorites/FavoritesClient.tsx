@@ -8,7 +8,7 @@ import {  SafeListing, SafeUser } from '../types'
 import Container from '../components/Container';
 import ListingCard from '../components/listings/ListingCard';
 import Heading from '../components/Heading';
-import { log } from 'console';
+
 
 
 
@@ -24,25 +24,26 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
 }) => {
 
 
-    let newListingArray: any[] = [];
+    // let newListingArray: any[] = [];
 
-    newListingArray = useMemo(() => {
-        let newArray: any[] = [];
-        let [listing]: any = listings;
+    // newListingArray = useMemo(() => {
+    //     let newArray: any[] = [];
+    //     let [listing]: any = listings;
         
-        for (let index in listing) {
-            if (index !== "createdAt") {
-                newArray.push(listing[index])
-            }
-        }
-        return newArray
+    //     for (let index in listing) {
+            
+            
+    //         if (index !== "createdAt") {
+    //             newArray.push(listing[index])
+    //         }
+    //     }
+    //     return newArray
 
 
 
-    }, [listings])
+    // }, [listings])
 
-
-    console.log(newListingArray.length);
+    // console.log(newListingArray);
 
 
     return (
@@ -54,7 +55,7 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
             <div
                 className="
           mt-10
-          grid 
+          grid  
           grid-cols-1 
           sm:grid-cols-2 
           md:grid-cols-3 
@@ -66,7 +67,7 @@ const FavoritesClient: React.FC<FavoritesClientProps> = ({
             >
 
                 {
-                    newListingArray.map((listing: any) => {
+                    listings.map((listing: any) => {
                         return (<ListingCard
                             currentUser={currentUser}
                             key={listing.id}

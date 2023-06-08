@@ -5,6 +5,7 @@ import React from 'react'
 
 interface ContainerProps {
     children: React.ReactNode;
+
 }
 
 const Container: React.FC<ContainerProps> = ({
@@ -12,14 +13,16 @@ const Container: React.FC<ContainerProps> = ({
 }) => {
   return (
       <div
-          className='
+          className={`
             max-w-[250px],
             mx-auto,
             xl:px-20,
             md:px-10,
-            sm:px-2 ,
+            sm:px-4 ,
             px-4
-          '
+            mx-3
+
+          `}
       >
           {children}
       </div>
