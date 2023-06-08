@@ -21,7 +21,7 @@ interface ListingClientProps {
         user: SafeUser;
     },
     currentUser: SafeUser | null,
-    reservations: SafeReservations[],
+    reservations?: SafeReservations[],
 }
 
 
